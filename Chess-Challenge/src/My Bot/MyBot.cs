@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using ChessChallenge.API;
 
-// ReSharper disable once CheckNamespace
 public class MyBot : IChessBot
 {
-	private int _pawnValue;
-	private int _knightValue;
-	private int _bishopValue;
-	private int _rookValue;
-	private int _queenValue;
-	private int _kingValue;
-	private int _depth;
-	private ulong[] _bitboards;
+	private readonly int _pawnValue;
+	private readonly int _knightValue;
+	private readonly int _bishopValue;
+	private readonly int _rookValue;
+	private readonly int _queenValue;
+	private readonly int _kingValue;
+	private readonly int _depth;
+	private readonly ulong[] _bitboards;
 
 	public MyBot()
 	{
@@ -72,13 +71,5 @@ public class MyBot : IChessBot
 			PieceType.None => 0,
 			_ => 0,
 		};
-	}
-
-	public bool IsEndGame(Board board)
-	{
-		if (board.GetPieceList(PieceType.Queen, true).Count == 0 &&
-			board.GetPieceList(PieceType.Queen, false).Count == 0)
-			return true;
-		return NumPieces(board, true) + NumPieces(board, false) <= 10;
 	}
 }
